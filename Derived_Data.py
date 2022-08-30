@@ -7,7 +7,7 @@ sections = sections.strip()
 sections = sections.split(" ")
 for i in range(2):
     sections.pop(0)
-print("Sections :", sections, type(sections))
+#print("Sections :", sections, type(sections))
 
 number_of_sections = len(sections)
 
@@ -17,7 +17,7 @@ days = days.strip()
 days = days.split(" ")
 for i in range(2):
     days.pop(0)
-print("\nDays: ", days, type(days))
+#print("\nDays: ", days, type(days))
 
 number_of_days = len(days)
 
@@ -29,7 +29,7 @@ for i in range(2):
     hours.pop(0)
 #print(hours, type(hours))
 number_of_hours = int(hours[0])
-print("\nNumber of hours: ", number_of_hours)
+#print("\nNumber of hours: ", number_of_hours)
 
 
 # --------------------------READ SUBJECTS AND CREATE A LIST---------------------#
@@ -39,7 +39,7 @@ subjects = subjects.strip()
 subjects = subjects.split(" ")
 for i in range(2):
     subjects.pop(0)
-print("\nSubjects: ", subjects, type(subjects))
+#print("\nSubjects: ", subjects, type(subjects))
 
 number_of_subjects = len(subjects)
 
@@ -52,7 +52,7 @@ for i in range(2):
     max_subjects.pop(0)
 #print(max_subjects, type(max_subjects))
 number_of_subjects_per_teacher = int(max_subjects[0])
-print("\nMaximum Number of subjects per teacher: ", number_of_subjects_per_teacher)
+#print("\nMaximum Number of subjects per teacher: ", number_of_subjects_per_teacher)
 
 # ----------------------- read and assign the names to a list----------------------#
 
@@ -61,7 +61,7 @@ names = names.strip()
 names = names.split(" ")
 for i in range(2):
     names.pop(0)
-print("\nNames: ", names, type(names))
+#print("\nNames: ", names, type(names))
 
 names_list = len(names)
 
@@ -87,6 +87,6 @@ for i in range(number_of_teachers):
         subject_pointer += 1
     
     subject_pointer -= 2
-print("\nTeachers and thier subjects: \n", teacher_subjects)
+#print("\nTeachers and thier subjects: \n", teacher_subjects)
 
 fixedData.close()
