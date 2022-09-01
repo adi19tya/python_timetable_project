@@ -1,0 +1,29 @@
+# this will initiate a school instance which will contain information about 
+class School:
+	def addTeacher(self, teacher)
+	def addSubject(self, subject)
+	def addSection(self, section)
+
+	def generateTimetable(self, timetable):
+		# randonly allocates teacher, section, subject to the time slots.
+		# cross verifies the combination with the defined constraints 
+	
+	#the teacher timetable complies with the defined constraints
+	def getTeacherTimetable
+	def getSectionTimetable
+
+class Timeslot:
+	# initailizes timeslots through a static method
+	@staticmethod 
+        def initializeTimeslots()
+	
+	# returns list of timeslots generated
+	def getTimeSlots()
+
+class Teacher:
+	# teacher name
+	def getTeacherName(self)
+
+class Section:
+	# section name
+	def getSectionName(self)

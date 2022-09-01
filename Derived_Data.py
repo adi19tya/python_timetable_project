@@ -69,6 +69,8 @@ names_list = len(names)
 
 number_of_teachers = ((number_of_sections * number_of_hours) // number_of_subjects_per_teacher) + 1
 
+
+
 teacher_subjects = {}
 
 subject_pointer = 0

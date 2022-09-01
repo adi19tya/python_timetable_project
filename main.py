@@ -87,8 +87,19 @@ def section_timetable(time_table, section_number, days):
     time_table_df = pd.DataFrame(master_list, columns = ["DAY", "8-9", "9-10", "11-12", "12-1"])
     return time_table_df
 
-def teacher_timetable():
-    pass
+def teacher_timetable(time_table, teacherID, days):
+    master_list = []
+    sections = ["A", "B", "C", "D", "E"]
+    #print(days, type(days))
+    for day in range(len(days)):
+        master_list.append([])
+    
+    for i in range(len(days)):
+        master_list[i].append(days[i])
+        
+
+
+    
     
 
 time_table = {}
@@ -108,6 +119,6 @@ while operation != "n":
         
     elif which_timetable == 2:
         which_teacher = int(input("\nWhich teacher's timetable do you want to display:\nTeacher 1 - 1\nTeacher 2 - 2\nTeacher 3 - 3\nTeacher 4 - 4\nTeacher 5 - 5\nTeacher 6 - 6\nTeacher 7 - 7\n"))
-        teacher_timetable(time_table, which_teacher)
+        teacher_timetable(time_table, which_teacher, Derived_Data.days)
         
     operation = input("\nFind another time table?\n[Y/n]")

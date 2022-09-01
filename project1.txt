@@ -1,0 +1,133 @@
+Project 1:
+Time Table(TT) :
+phase I:
+Given the specification as follows, create and display the time table.
+
+1. There are 5 sections.---------------------------------------------------------------------DONE
+2. Each section has 4 hours of class for 5 days in the week.---------------------------------DONE
+3. There are 5 subjects, each of which is taught for 4 hours.--------------------------------DONE
+4. You may call the subjects sub1, sub2, sub3, sub4, sub5 or give some names.----------------DONE
+5. Timings are : 8 am - 9 am, 9 am - 10 am, 11 am - 12 noon, 12 noon - 1 pm.-----------------DONE
+6. There are some n teachers. You may call them as teacher1, teacher2, teacher3, ... or give
+   them some names.--------------------------------------------------------------------------DONE
+7. Minimize the value of n.------------------------------------------------------------------PENDING
+8. Any teacher can teach any subject.--------------------------------------------------------DONE
+9. A single teacher teaches a given subject for a section.-----------------------------------DONE
+10. No teacher will teach more than three subjects.------------------------------------------DONE
+11. No teacher will teach more than 3 hrs in a day.------------------------------------------DONE
+
+construct suitable data structures to hold these information.
+display time table for each section.---------------------------------------------------------PENDING
+display time table for each teacher.---------------------------------------------------------PENDING
+
+-------------
+
+think and analyze the problem. (1 hr)
+create a module and put the stubs and give it your next team (30 min)
+analyze and write test cases for your previous team ( 1 hr 30 min)
+develop your program (2 hrs)
+give it for testing to the next team
+you test the program of your previous team (1 hr) and report.
+you correct your bugs and send to the next team for review (1 hr)
+you review the code for your previous team and indicate corrections (30 min)
+your correct your code based on review (30 min)
+
+Develop your code as a module. Use multiple files.
+Your code be object oriented or procedural. It is upto you.
+These timings are indicative - could vary.
+Store all your versions - one given for testing, corrected after testing, sent 
+for review, corrected after review.
+
+------------------------------
+
+guidelines:
+- use meaningful variable names and function names
+- comment what the function does, what a piece of code does
+- do not use tricks
+- write the code simple and easy to read
+
+
+# description of this function
+def initiate_timetable(time_table, days, number_of_sections, number_of_hours):
+	return something
+
+
+
+{('MONDAY', '8-9'): 
+	{'a': None, 'b': None, 'c': None, 'd': None, 'e': None}, 
+('MONDAY', '9-10'): 
+	{'a': None, 'b': None, 'c': None, 'd': None, 'e': None}, 
+('MONDAY', '11-12'): 
+	{'a': None, 'b': None, 'c': None, 'd': None, 'e': None}, 
+('MONDAY', '12-1'): 
+	{'a': None, 'b': None, 'c': None, 'd': None, 'e': None}, 
+('TUESDAY', '8-9'): 
+	{'a': None, 'b': None, 'c': None, 'd': None, 'e': None}, 
+('TUESDAY', '9-10'): 
+	{'a': None, 'b': None, 'c': None, 'd': None, 'e': None}, 
+('TUESDAY', '11-12'): 
+	{'a': None, 'b': None, 'c': None, 'd': None, 'e': None}, 
+('TUESDAY', '12-1'): 
+	{'a': None, 'b': None, 'c': None, 'd': None, 'e': None}, 
+('WEDNESDAY', '8-9'): 
+	{'a': None, 'b': None, 'c': None, 'd': None, 'e': None}, 
+('WEDNESDAY', '9-10'): 
+	{'a': None, 'b': None, 'c': None, 'd': None, 'e': None}, 
+('WEDNESDAY', '11-12'): 
+	{'a': None, 'b': None, 'c': None, 'd': None, 'e': None}, 
+('WEDNESDAY', '12-1'): 
+	{'a': None, 'b': None, 'c': None, 'd': None, 'e': None}, 
+('THURSDAY', '8-9'): 
+	{'a': None, 'b': None, 'c': None, 'd': None, 'e': None}, 
+('THURSDAY', '9-10'): 
+	{'a': None, 'b': None, 'c': None, 'd': None, 'e': None}, 
+('THURSDAY', '11-12'): 
+	{'a': None, 'b': None, 'c': None, 'd': None, 'e': None}, 
+('THURSDAY', '12-1'): 
+	{'a': None, 'b': None, 'c': None, 'd': None, 'e': None}, 
+('FRIDAY', '8-9'): 
+	{'a': None, 'b': None, 'c': None, 'd': None, 'e': None}, 
+('FRIDAY', '9-10'): 
+	{'a': None, 'b': None, 'c': None, 'd': None, 'e': None}, 
+('FRIDAY', '11-12'): 
+	{'a': None, 'b': None, 'c': None, 'd': None, 'e': None}, 
+('FRIDAY', '12-1'): 
+	{'a': None, 'b': None, 'c': None, 'd': None, 'e': None}}
+
+
+# this will initiate a school instance which will contain information about 
+class School:
+	def addTeacher(self, teacher)
+	def addSubject(self, subject)
+	def addSection(self, section)
+
+	def generateTimetable(self, timetable):
+		# randonly allocates teacher, section, subject to the time slots.
+		# cross verifies the combination with the defined constraints 
+	
+	#the teacher timetable complies with the defined constraints
+	def getTeacherTimetable
+	def getSectionTimetable
+
+class Timeslot:
+	# initailizes timeslots through a static method
+	@staticmethod 
+        def initializeTimeslots()
+	
+	# returns list of timeslots generated
+	def getTimeSlots()
+
+class Teacher:
+	# teacher name
+	def getTeacherName(self)
+
+class Section:
+	# section name
+	def getSectionName(self)
+
+
+
+
+
+
+ 
