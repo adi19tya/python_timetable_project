@@ -142,5 +142,4 @@ teacher_vaiable_database = []
 for teacher in range(Derived_Data.number_of_teachers):
     teacher_vaiable_database.append(Teacher(Derived_Data.number_of_subjects_per_teacher))
 
-
     
