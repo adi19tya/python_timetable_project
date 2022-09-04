@@ -130,4 +130,90 @@ class Section:
 
 
 
+
+
+
+
+
+
+
+ALL POSSIBLE COMBINATIONS CHECKED
+('MONDAY', '8-9') {'A': ['t1', 'S1'], 'B': None, 'C': None, 'D': None, 'E': None}
+('MONDAY', '9-10') {'A': ['t2', 'S2'], 'B': None, 'C': None, 'D': None, 'E': None}
+('MONDAY', '11-12') {'A': ['t3', 'S3'], 'B': None, 'C': None, 'D': None, 'E': None}
+('MONDAY', '12-1') {'A': ['t4', 'S4'], 'B': None, 'C': None, 'D': None, 'E': None}
+('TUESDAY', '8-9') {'A': ['t4', 'S4'], 'B': None, 'C': None, 'D': None, 'E': None}
+('TUESDAY', '9-10') {'A': ['t5', 'S5'], 'B': None, 'C': None, 'D': None, 'E': None}
+('TUESDAY', '11-12') {'A': ['t6', 'S1'], 'B': None, 'C': None, 'D': None, 'E': None}
+('TUESDAY', '12-1') {'A': ['t7', 'S2'], 'B': None, 'C': None, 'D': None, 'E': None}
+('WEDNESDAY', '8-9') {'A': ['t7', 'S2'], 'B': None, 'C': None, 'D': None, 'E': None}
+('WEDNESDAY', '9-10') {'A': ['t1', 'S1'], 'B': None, 'C': None, 'D': None, 'E': None}
+('WEDNESDAY', '11-12') {'A': ['t3', 'S3'], 'B': None, 'C': None, 'D': None, 'E': None}
+('WEDNESDAY', '12-1') {'A': ['t4', 'S4'], 'B': None, 'C': None, 'D': None, 'E': None}
+('THURSDAY', '8-9') {'A': ['t4', 'S4'], 'B': None, 'C': None, 'D': None, 'E': None}
+('THURSDAY', '9-10') {'A': ['t5', 'S5'], 'B': None, 'C': None, 'D': None, 'E': None}
+('THURSDAY', '11-12') {'A': ['t6', 'S1'], 'B': None, 'C': None, 'D': None, 'E': None}
+('THURSDAY', '12-1') {'A': ['t7', 'S2'], 'B': None, 'C': None, 'D': None, 'E': None}
+('FRIDAY', '8-9') {'A': ['t3', 'S3'], 'B': None, 'C': None, 'D': None, 'E': None}
+('FRIDAY', '9-10') {'A': ['t5', 'S5'], 'B': None, 'C': None, 'D': None, 'E': None}
+('FRIDAY', '11-12') {'A': None, 'B': None, 'C': None, 'D': None, 'E': None}
+('FRIDAY', '12-1') {'A': None, 'B': None, 'C': None, 'D': None, 'E': None}
+
+
+
+
+
+
+
+
+
+
+Commited Current Combo t6 S5
+('MONDAY', '8-9') {'A': ['t1', 'S1'], 'B': ['t6', 'S1'], 'C': ['t4', 'S1'], 'D': ['t2', 'S1'], 'E': None}
+('MONDAY', '9-10') {'A': ['t2', 'S2'], 'B': ['t7', 'S2'], 'C': ['t5', 'S2'], 'D': ['t3', 'S2'], 'E': None}
+('MONDAY', '11-12') {'A': ['t3', 'S3'], 'B': ['t1', 'S3'], 'C': ['t6', 'S3'], 'D': ['t4', 'S3'], 'E': None}
+('MONDAY', '12-1') {'A': ['t4', 'S4'], 'B': ['t2', 'S4'], 'C': ['t7', 'S4'], 'D': ['t5', 'S4'], 'E': None}
+('TUESDAY', '8-9') {'A': ['t5', 'S5'], 'B': ['t3', 'S5'], 'C': ['t1', 'S5'], 'D': ['t6', 'S5'], 'E': None}
+('TUESDAY', '9-10') {'A': ['t6', 'S1'], 'B': ['t4', 'S1'], 'C': ['t2', 'S1'], 'D': ['t7', 'S1'], 'E': None}
+('TUESDAY', '11-12') {'A': ['t7', 'S2'], 'B': ['t5', 'S2'], 'C': ['t3', 'S2'], 'D': ['t4', 'S3'], 'E': None}
+('TUESDAY', '12-1') {'A': ['t1', 'S1'], 'B': ['t6', 'S1'], 'C': ['t4', 'S1'], 'D': ['t5', 'S4'], 'E': None}
+('WEDNESDAY', '8-9') {'A': ['t2', 'S2'], 'B': ['t7', 'S2'], 'C': ['t5', 'S2'], 'D': ['t6', 'S5'], 'E': None}
+('WEDNESDAY', '9-10') {'A': ['t3', 'S3'], 'B': ['t1', 'S3'], 'C': ['t6', 'S3'], 'D': ['t7', 'S1'], 'E': None}
+('WEDNESDAY', '11-12') {'A': ['t4', 'S4'], 'B': ['t2', 'S4'], 'C': ['t7', 'S4'], 'D': ['t3', 'S2'], 'E': None}
+('WEDNESDAY', '12-1') {'A': ['t5', 'S5'], 'B': ['t3', 'S5'], 'C': ['t1', 'S5'], 'D': ['t4', 'S3'], 'E': None}
+('THURSDAY', '8-9') {'A': ['t6', 'S1'], 'B': ['t4', 'S1'], 'C': ['t2', 'S1'], 'D': ['t5', 'S4'], 'E': None}
+('THURSDAY', '9-10') {'A': ['t7', 'S2'], 'B': ['t5', 'S2'], 'C': ['t3', 'S2'], 'D': ['t6', 'S5'], 'E': None}
+('THURSDAY', '11-12') {'A': ['t3', 'S3'], 'B': ['t1', 'S3'], 'C': ['t6', 'S3'], 'D': ['t7', 'S1'], 'E': None}
+('THURSDAY', '12-1') {'A': ['t4', 'S4'], 'B': ['t2', 'S4'], 'C': ['t7', 'S4'], 'D': ['t3', 'S2'], 'E': None}
+('FRIDAY', '8-9') {'A': ['t5', 'S5'], 'B': ['t3', 'S5'], 'C': ['t1', 'S5'], 'D': ['t4', 'S3'], 'E': None}
+('FRIDAY', '9-10') {'A': ['t3', 'S3'], 'B': ['t1', 'S3'], 'C': ['t6', 'S3'], 'D': ['t5', 'S4'], 'E': None}
+('FRIDAY', '11-12') {'A': ['t4', 'S4'], 'B': ['t2', 'S4'], 'C': ['t7', 'S4'], 'D': ['t6', 'S5'], 'E': None}
+('FRIDAY', '12-1') {'A': ['t5', 'S5'], 'B': ['t3', 'S5'], 'C': ['t1', 'S5'], 'D': None, 'E': None}
+TimeSlot Day: {'MONDAY': ['8-9', '11-12'], 'TUESDAY': ['9-10', '12-1', '8-9'], 'WEDNESDAY': ['9-10', '8-9'], 'THURSDAY': ['8-9', '11-12', '9-10'], 'FRIDAY': ['9-10', '11-12']}
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+TimeSLot:  ('FRIDAY', '12-1')
+Section:  D
+
+First Combo t4 S3
+list of sections and respective subjects taught:  {'A': 'S4', 'B': 'S1', 'C': 'S1', 'D': 'S3'}
+Incoming Sec Subject:  ['D', 'S3']
+False
+
+
+CONDITION CHECK:
+check_section_subject:  True
+check_daily_hours:  True
+check_max_subjects:  True
+checkTimeSlotOccurance:  True
+checkSubjectPerDayForOneSection False
+checkSubjectCount:  False
+
+
+
+
+
+
  
