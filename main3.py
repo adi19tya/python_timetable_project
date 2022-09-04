@@ -48,47 +48,30 @@ class School:
                 print("\nTimeSLot: ", timeTableKeys[i])  # print the keys of the time table - day and timeslot
                 print("Section: ", self.sectionList[j].sectionName) # print the section name
 
-                if len(historyDict[i * len(self.sectionList)]) == 0:
-                    teacherPointer = 0
-                    subjectPointer = 0
-                    snapShot = History(0, 0, self.teacherList[0].section_subject_list, self.teacherList[0].daily_hours, self.teacherList[0].subjects_taught, self.teacherList[0].timeSlotOccueance, self.sectionList.daySubjectDict)
-                    historyDict[i * len(self.sectionList) + j] = snapShot
+                # if len(historyDict[i * len(self.sectionList)]) == 0:
+                #     teacherPointer = 0
+                #     subjectPointer = 0
+                #     snapShot = History(0, 0, self.teacherList[0].section_subject_list, self.teacherList[0].daily_hours, self.teacherList[0].subjects_taught, self.teacherList[0].timeSlotOccueance, self.sectionList.daySubjectDict)
+                #     historyDict[i * len(self.sectionList) + j] = snapShot
                 
-
                 (teacherPointer, subjectPointer) = self.pointerHistory[i * len(self.sectionList) + j]
-
 
                 currentTeacher = self.teacherList[teacherPointer]
                 currentSubject = self.subjectList[subjectPointer]
                 currentSection = self.sectionList[j]
 
-
-                currentIterDay = timeTableKeys[i][0]
-                print(currentIterDay)
-                if i == 0:
-                    previosIterDay = timeTableKeys[i][0]
-                else:
-                    previosIterDay = timeTableKeys[i-1][0]
-                
-                if currentIterDay == previosIterDay:
-                    newDay = False
-                else:
-                    newDay = True
-
                 print("\nFirst Combo", currentTeacher.teacherName, currentSubject)
 
-
                 secSubPair = [self.sectionList[j].sectionName, self.subjectList[subjectPointer]]
-                print(secSubPair)
-
-                #print("DEBUG:", currentSection.sectionName, type(timeTableKeys[i][0]), currentSubject)
+                #print(secSubPair)
 
 
                 condition1 = currentTeacher.check_section_subject(secSubPair)
-                condition2 = currentTeacher.check_daily_hours(newDay)
+                condition2 = currentTeacher.check_daily_hours(timeTableKeys[i][0])
                 condition3 = currentTeacher.check_max_subjects(currentSubject)
                 condition4 = currentTeacher.checkTimeSlotOccurance(timeTableKeys[i][1], timeTableKeys[i][0])
                 condition5 = currentSection.checkSubjectPerDayForOneSection(timeTableKeys[i][0], currentSubject)
+                condition6 = currentSection.checkSubjectCount(currentSubject)
                 
                 print("\n\nCONDITION CHECK: ")
                 print("check_section_subject: ", condition1)
@@ -96,18 +79,21 @@ class School:
                 print("check_max_subjects: ", condition3)
                 print("checkTimeSlotOccurance: ", condition4)
                 print("checkSubjectPerDayForOneSection", condition5)
+                print("checkSubjectCount: ", condition6)
 
 
 
-                while not(condition1) or not(condition2) or not(condition3) or not(condition4) or not(condition5):  # add conditions here
+                while not(condition1) or not(condition2) or not(condition3) or not(condition4) or not(condition6):  # add conditions here
                                         
                     print("\n\nENTERED LOOP")
-                    print("\nInside While Loop,  teacher and subject pointer (BEFORE): ", teacherPointer, subjectPointer)
+                    #print("\nInside While Loop,  teacher and subject pointer (BEFORE): ", currentTeacher, currentSubject)
 
                     # Increment 
                     if (teacherPointer == len(self.teacherList) - 1) and (subjectPointer == len(self.subjectList) - 1):
                         print("ALL POSSIBLE COMBINATIONS CHECKED")
-                        print("\n\n", self.timetable)
+                        for i in self.timetable:
+                            print(i, self.timetable[i])
+                        #print("\n\n", self.timetable)
                         print("\nPointer History: \n", self.pointerHistory)
                         quit()
                     else:
@@ -118,26 +104,30 @@ class School:
                         else:
                             subjectPointer += 1
 
-                    print("\n\nInside While Loop,  teacher and snject pointer (AFTER): ", teacherPointer, subjectPointer)
-
                     currentTeacher = self.teacherList[teacherPointer]
                     currentSubject = self.subjectList[subjectPointer]
+
+                    print("\n\nTimeslot: ", timeTableKeys[i])
+                    print("Section: ", self.sectionList[j].sectionName)
+                    print("Teacher, Subject pointer: ", currentTeacher.teacherName, currentSubject)
+
 
                     secSubPair = [self.sectionList[j].sectionName, self.subjectList[subjectPointer]]
 
                     condition1 = currentTeacher.check_section_subject(secSubPair)
-                    condition2 = currentTeacher.check_daily_hours(newDay)
+                    condition2 = currentTeacher.check_daily_hours(timeTableKeys[i][0])
                     condition3 = currentTeacher.check_max_subjects(currentSubject)
                     condition4 = currentTeacher.checkTimeSlotOccurance(timeTableKeys[i][1], timeTableKeys[i][0])
                     condition5 = currentSection.checkSubjectPerDayForOneSection(timeTableKeys[i][0], currentSubject)
+                    condition6 = currentSection.checkSubjectCount(currentSubject)
                     
-                    
-                    print("\n\nCHECK Condition Inside: ")
+                    print("\nCHECK Condition Inside: ")
                     print("check_section_subject: ", condition1)
                     print("check_daily_hours: ", condition2)
                     print("check_max_subjects: ", condition3)
                     print("checkTimeSlotOccurance: ", condition4)
                     print("checkSubjectPerDayForOneSection", condition5)
+                    print("checkSubjectCount: ", condition6)
 
                     print("\n\n Not Commited Current Combo", currentTeacher.teacherName, currentSubject)
 
@@ -147,12 +137,15 @@ class School:
                 self.pointerHistory[i * len(self.sectionList) + j] = [teacherPointer, subjectPointer]
                 print("\n\nTimetable: \n", self.timetable)
                 # add sec sub comb to teach object for condition 1
-                currentTeacher.addCommittedSecSubToDict(secSubPair)
-                currentTeacher.subractHourForCommitedPair()
-                currentTeacher.subMaxSubForCommittedPair(currentSubject)
-                currentTeacher.addTimeSlotToDay(timeTableKeys[i][1], timeTableKeys[i][0])
-                currentSection.addCommittedPairForDaySubCondition(timeTableKeys[i][0], currentSubject)
-        print("\n\nFILLED TIMETABLE: \n", self.timetable)
+                currentTeacher.addCommittedSecSubToDict(secSubPair)  
+                currentTeacher.subractHourForCommitedPair(timeTableKeys[i][0])    # condition 2
+                currentTeacher.subMaxSubForCommittedPair(currentSubject)       # condition 3
+                currentTeacher.addTimeSlotToDay(timeTableKeys[i][1], timeTableKeys[i][0])     # condition 4
+                currentSection.addCommittedPairForDaySubCondition(timeTableKeys[i][0], currentSubject)     # condition 5
+                currentSection.addHourToSubject(currentSubject)  # condition 6
+        print("\n\nFILLED TIMETABLE: \n")
+        for i in self.timetable:
+            print(i, self.timetable[i])
             
         
 
@@ -196,10 +189,13 @@ class Timeslot:
     
 class Teacher:
 
+    maxSubjects = 3
+    maxDailyHours = 3
+
     def __init__(self, teacherName):
         self.teacherName = teacherName
-        self.daily_hours = 3
-        self.max_subjects = 3
+        self.dailyHourCount = {"MONDAY":0, "TUESDAY":0, "WEDNESDAY":0, "THURSDAY":0, "FRIDAY":0}
+        self.subjectCount = 0
         self.subjects_taught = []
         self.section_subject_list = {}
         self.timeSlotOccueance = {"MONDAY":[], "TUESDAY":[], "WEDNESDAY":[], "THURSDAY":[], "FRIDAY":[]}
@@ -209,9 +205,9 @@ class Teacher:
 
     # Check the conditions
 
-    # Condition 1: A single teacher teaches a given subject for  a section
+    # Condition 1: A single teacher teaches one subject for a section
     def check_section_subject(self, secSub_comination):
-        print("the list: ", self.section_subject_list)
+        print("list of sections and respective subjects taught: ", self.section_subject_list)
         #print("Teacher Name: ", self.teacherName)
         #print("Section Subject List:", self.section_subject_list)
         print("Incoming Sec Subject: ", secSub_comination)
@@ -233,41 +229,39 @@ class Teacher:
 
 
     # Condition 2: No teacher will teach more than 3 hours in a day
-    def check_daily_hours(self, new_day):
-        # reset daily_hours to 3 if it is a new day
-        if new_day == True:
-            self.daily_hours = 3
-            
+    def check_daily_hours(self, currentDay):
         # check if hour balance is remaining
-        if self.daily_hours > 0:
-            return True
-        else:
+        if self.dailyHourCount[currentDay] == Teacher.maxDailyHours:
             return False
+        else:
+            return True
     
-    def subractHourForCommitedPair(self):
-        self.daily_hours -= 1
+    def subractHourForCommitedPair(self, currentDay):
+        self.dailyHourCount[currentDay] += 1
 
 
 
     # Condition 3: No teacher will teach more than 3 subjects
     def check_max_subjects(self, subject):
-        if self.max_subjects > 0:   # check if the subject count is less less than 1
+        if subject in self.subjects_taught:
             return True
-        else:
-            return False
+        else:    
+            if self.subjectCount == Teacher.maxSubjects:   # check if the subject count is less less than 1
+                return False
+            else:
+                return True
     
     def subMaxSubForCommittedPair(self, subject):
-        self.max_subjects -= 1
-        self.subjects_taught.append(subject)
+        if subject in self.subjects_taught:
+            pass
+        else:
+            self.subjectCount += 1
+            self.subjects_taught.append(subject)
 
 
 
     # Condition 4: Same teacher can not teach in the same timeslot
     def checkTimeSlotOccurance(self, timeslot, day):
-        # if newDay == True:
-        #     self.timeSlotOccueance.clear()
-        
-        #print(self.timeSlotOccueance)
 
         if timeslot in self.timeSlotOccueance[day]:
             return False
@@ -282,17 +276,17 @@ class Teacher:
 
 class Section:
 
+    hoursASubjectMustBeTaught = 4
+
     def __init__(self, sectionName):
         self.sectionName = sectionName
         self.daySubjectDict = {"MONDAY":[], "TUESDAY":[], "WEDNESDAY":[], "THURSDAY":[], "FRIDAY":[]}
+        self.subjectHourCount = {"S1" : 0, "S2" : 0, "S3" : 0, "S4" : 0, "S5" : 0}
 
     def getSectionName(self):
         return self.sectionName
 
-    def initaiteDaySubDict():
-        pass
-
-    # subject taught to a section can not repeat in a day
+    # Condition 5: subject taught to a section can not repeat in a day
     def checkSubjectPerDayForOneSection(self, day, subject):
         # print("\n\nInside the condition!!")
         # print(day)
@@ -307,7 +301,17 @@ class Section:
 
     def addCommittedPairForDaySubCondition(self, day, subject):
         self.daySubjectDict[day].append(subject)
-        
+
+    # Condition 6: each subject is taught 4 times for each section
+    def checkSubjectCount(self, subject):
+        if self.subjectHourCount[subject] == Section.hoursASubjectMustBeTaught:
+            return False
+        else:
+            return True
+
+    def addHourToSubject(self, subject):
+        self.subjectHourCount[subject] += 1
+
 
 
 class History:
@@ -351,7 +355,7 @@ for i in range(numberOfTeachers):
     teacherInstance = Teacher(teacherName)
     DPS.addTeacher(teacherInstance)'''
 
-teachers = ["t1", "t2", "t3", "t4", "t5", "t6", "t7"]
+teachers = ["t1", "t2", "t3", "t4", "t5", "t6", "t7", "t8", "t9", "t10", "t11", "t12", "t13", "t14"]
 for i in teachers:
     teacherInstance = Teacher(i)
     DPS.addTeacher(teacherInstance)
@@ -365,4 +369,3 @@ for i in subjects:
 
 DPS.initializeTimeTable()
 DPS.generateTimetable()
-
