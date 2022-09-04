@@ -153,11 +153,49 @@ class School:
             
         
 
-    def getTeacherTimetable(self, teacher):
-        pass
+    def getTeacherTimetable(self, teacher, calender):
+        timeTableKeys = list(self.timetable.keys())
 
-    def getSectionTimetable(self, section):
-        pass
+        for timeSlot in range(len(timeTableKeys)):
+            dayHourComb = timeTableKeys[timeSlot]
+            day = dayHourComb[0]
+            hour = dayHourComb[1]
+
+            ifFlag = False
+            for slotSection in self.timetable[dayHourComb]:
+                if self.timetable[dayHourComb][slotSection][0] == teacher:
+                    section = slotSection
+                    subject = self.timetable[dayHourComb][slotSection][1]
+                    ifFlag = True
+                
+                if ifFlag == False:
+                    section = "NO"
+                    subject = "CLASS"
+                
+            
+            calender[day][hour] = [section, subject]
+        
+        for cDay in calender:
+            print(cDay)
+            for dSlot in calender[cDay]:
+                print("\t", dSlot, end = "\t")
+                print(calender[cDay][dSlot], end = "\n\n")
+
+    def getSectionTimetable(self, section, calender):
+
+        timeTableKeys = list(self.timetable.keys())
+        #print(section)
+        for timeSlot in range(len(timeTableKeys)):
+            dayHourComb = timeTableKeys[timeSlot]
+            day = dayHourComb[0]
+            hour = dayHourComb[1]
+            calender[day][hour] = self.timetable[dayHourComb][section]
+
+        for cDay in calender:
+            print(cDay)
+            for dSlot in calender[cDay]:
+                print("\t", dSlot, end = "\t")
+                print(calender[cDay][dSlot], end = "\n\n")
 
 
 
@@ -373,3 +411,42 @@ for i in subjects:
 
 DPS.initializeTimeTable()
 DPS.generateTimetable()
+
+calenderDataStructure = {"MONDAY":{"7-8":None, "8-9":None, "9-10":None, "10-11":None, "11-12":None, "12-1":None, "1-2": None, "2-3":None, "3-4":None, "4-5":None, "5-6":None, "6-7":None}, "TUESDAY":{"7-8":None, "8-9":None, "9-10":None, "10-11":None, "11-12":None, "12-1":None, "1-2": None, "2-3":None, "3-4":None, "4-5":None, "5-6":None, "6-7":None}, "WEDNESDAY":{"7-8":None, "8-9":None, "9-10":None, "10-11":None, "11-12":None, "12-1":None, "1-2": None, "2-3":None, "3-4":None, "4-5":None, "5-6":None, "6-7":None}, "THURSDAY":{"7-8":None, "8-9":None, "9-10":None, "10-11":None, "11-12":None, "12-1":None, "1-2": None, "2-3":None, "3-4":None, "4-5":None, "5-6":None, "6-7":None}, "FRIDAY":{"7-8":None, "8-9":None, "9-10":None, "10-11":None, "11-12":None, "12-1":None, "1-2": None, "2-3":None, "3-4":None, "4-5":None, "5-6":None, "6-7":None}}
+
+
+
+userInterface = "Y"
+
+while userInterface == "Y":
+        operation = int(input("\n\n\n\nWhose information do you want to display?\nTeacher Information - 1\nSection Information - 2\n"))
+
+        # display teacher information
+        if operation == 1:
+            teacherOp = int(input("\n\nWhich teacher's information do you want to see?\nT1 - 1\nT2 - 2\nT3 -3\nT4 -4\nT5 -5\nT6 -6\nT7 -7\nT8 -8\nT9 -9\nT10 -10\n"))
+            
+            teacherChosen = DPS.teacherList[teacherOp-1]
+
+            teacherCalender = calenderDataStructure
+
+            print("\n Time Table of teacher ", teacherChosen.teacherName, end = "\n\n")
+            DPS.getTeacherTimetable(teacherChosen.teacherName, teacherCalender)
+
+            print("\nSubjects Taught: \n\n\t", teacherChosen.subjects_taught)
+            print("\n\nSection And the Respective Subjects Taught: \n\n\t", teacherChosen.section_subject_list)
+            print("\n\nHours taught each day: \n\n\t", teacherChosen.timeSlotOccueance)
+        
+        else:
+            sectionOp = int(input("\n\nWhich section's informtation do you want to see?\nA - 1\nB - 2\nC - 3\nD - 4\nE - 5\n"))
+
+            sectionChosen = DPS.sectionList[sectionOp - 1]
+
+            sectionCalender = calenderDataStructure
+
+            print("\nTime Table of section ", sectionChosen.sectionName, end = "\n\n")
+            DPS.getSectionTimetable(sectionChosen.sectionName, sectionCalender)
+
+            print("\n\nNumber of hours each subject has been taught: \n\n\t", sectionChosen.subjectHourCount)
+    
+        userInterface = input("\n\n\n\n\nWould you like to see more information: [Y/n]\n\n")
+
