@@ -312,7 +312,7 @@ class Teacher:
     
     def addTimeSlotToDay(self, timeslot, day):
         self.timeSlotOccueance[day].append(timeslot)
-        print("TimeSlot Day:", self.timeSlotOccueance)
+        #print("TimeSlot Day:", self.timeSlotOccueance)
     
 
 
@@ -381,7 +381,6 @@ Timeslot.initializeTimeslots()
 DPS = School()
 
 # initiate the sections
-#numberOfSections = int(input("Enter the number of sections: "))
 sections = Derived_Data.sections
 for i in sections:
     #sectionName = input("Enter the Section Name: ")
