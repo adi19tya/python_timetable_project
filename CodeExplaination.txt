@@ -1,0 +1,68 @@
+Code Eplaination:
+
+1. First initiate the timeslots, by creating instances of the Timeslot class
+	this is done using the Timeslot.initializeTimeslots() function
+	line: 378
+	
+2. Create a School object "DPS" using the School Class
+	line: 381
+	
+3. Initialize the secitons. Data is read from the Derived Data Module which is read from the Fixed Data txt file.
+	line: 383
+
+4. Initialize the teachers. Minimum number of teachers are clalulted but number of teachers required for project is more. Will optimize later.
+	line: 390
+	
+5. Initialize the subjects. This data also comes from the Fixed Data txt file
+	line: 405
+	
+6. For the DPS class instance initialize the timetable.
+	function: DPS.initializeTimeTable()
+	line: 411
+
+	6.1 line 22
+		This function will create an empty data structure that represents the Timetable
+		This data structure is a Dictionary of Dictionaries.
+		The First Dictionary has 20 keys repesenting the timeslots
+		The Values are dictionaries.
+		These dictionaries have 5 keys repesenting the secitons and the values are lists with the teacher and subject.
+
+7. Now, generate/fill in the time table for the School DPS:
+	function: DPS.generateTimetable()
+	line: 412
+	
+	7.1 line: 36
+		A subjectPointer and a teacherPointer is created to help iterate through the subjects and the teachers.
+		This will help us go through all possible combinations for a given timeslot and section
+		
+		2 nested for loops are used. The outer one iterates through the sections. THe inner loop iterates through the timeslots.
+		
+		At every section and timeslot, for a given teacher:subject combination, 5 conditions are checked:
+			1. Condition1: A teacher can only teach one subject to a section
+			2. Condition2: A teacher can only teach 3 hours a day
+			3. Condition3: A teacher can only take up 3 subjects overall
+			4. Condition4: Once allotted to a time slot, the teacher can not be allotted  to the same timeslot(can't be at 2 place at once)
+			5. Condition6: Each subject must be taught 4 times a week for each subject
+			
+		Only if all the conditions return True, does the teacher:subject combination get committed to the tometable.
+			
+		If not, then the next iteration of teacher:subject combination is taken. The conditions are checked once again.
+		This process repeats till all the slots are filled for every section.
+
+		Ulimately the timetable is filled.
+
+8. Create a Calender data structure.Dictionary. Keys: Days, Values: Dictionaries(Keys: Time slots, Values:None)
+	Line: 414
+	
+9. Create a rudimentary User Interface.
+
+10. Display Teacher Time and other information:
+	10.1 Subjects taught, 
+	10.2 Section And the Respective Subjects Taught
+	10.3 Hours taught each day
+
+11. Display Section TIme table and other information:
+	11.1 Number of hours each subject has been taught
+	
+			
+		

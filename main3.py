@@ -316,7 +316,7 @@ class Section:
         self.sectionName = sectionName
         self.teacherSubjectCombinatons = {}
         self.daySubjectDict = {"MONDAY":[], "TUESDAY":[], "WEDNESDAY":[], "THURSDAY":[], "FRIDAY":[]}
-        self.subjectHourCount = {"S1" : 0, "S2" : 0, "S3" : 0, "S4" : 0, "S5" : 0}
+        self.subjectHourCount = {}
 
     def getSectionName(self):
         return self.sectionName
@@ -373,16 +373,25 @@ Timeslot.initializeTimeslots()
 # initate school object
 DPS = School()
 
+
+# initiate the subjects
+#numberofSubjects = Derived_Data.number_of_subjects
+subjects = Derived_Data.subjects
+for i in subjects:
+    DPS.addSubject(i)
+
 # initiate the sections
 sections = Derived_Data.sections
-for i in sections:
+for i in range(len(sections)):
     #sectionName = input("Enter the Section Name: ")
-    sectionInstance = Section(i)
+    sectionInstance = Section(sections[i])
     DPS.addSection(sectionInstance)
+    for j in range(len(DPS.subjectList)):
+        DPS.sectionList[i].subjectHourCount[DPS.subjectList[j]] = 0
 
 # initiate the teachers
-numberOfTeachers = Derived_Data.number_of_teachers
-print("\n\nMinimum Number of Required Teachers: ", numberOfTeachers)
+# numberOfTeachers = Derived_Data.number_of_teachers
+# print("\n\nMinimum Number of Required Teachers: ", numberOfTeachers)
 '''
 for i in range(numberOfTeachers):
     teacherName = input("Enter the Teacher Name: ")
@@ -393,13 +402,7 @@ teachers = ["t1", "t2", "t3", "t4", "t5", "t6", "t7", "t8", "t9"]
 for i in teachers:
     teacherInstance = Teacher(i)
     DPS.addTeacher(teacherInstance)
-    
 
-# initiate the subjects
-#numberofSubjects = Derived_Data.number_of_subjects
-subjects = Derived_Data.subjects
-for i in subjects:
-    DPS.addSubject(i)
 
 # Create viable section:teacher:subject combinations
 k = 0
@@ -428,7 +431,7 @@ while userInterface == "Y":
 
         # display teacher information
         if operation == 1:
-            teacherOp = int(input("\n\nWhich teacher's information do you want to see?\nT1 - 1\nT2 - 2\nT3 -3\nT4 -4\nT5 -5\nT6 -6\nT7 -7\nT8 -8\nT9 -9\nT10 -10\n"))
+            teacherOp = int(input("\n\nWhich teacher's information do you want to see?\nT1 - 1\nT2 - 2\nT3 -3\nT4 -4\nT5 -5\nT6 -6\nT7 -7\nT8 -8\nT9 -9\n"))
             
             teacherChosen = DPS.teacherList[teacherOp-1]
 
@@ -455,3 +458,15 @@ while userInterface == "Y":
     
         userInterface = input("\n\n\n\n\nWould you like to see more information: [Y/n]\n\n")
 
+
+
+
+
+'''
+EXTRA SUBJECTS :
+Computational Geometry
+Robot Manipulators
+Diffusional Mass Transfer Operations
+Atmospheric Environmental Engineering
+Enzyme technology
+'''

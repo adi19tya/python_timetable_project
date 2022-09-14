@@ -1,4 +1,11 @@
+import sys
+
+from numpy import append
+subjectDetailsFile = sys.argv[1]
+number_of_subjects = int(sys.argv[2])
 fixedData = open("Fixed_Data.txt", "r")
+subjectFile = open(subjectDetailsFile, "r")
+
 
 
 # --------------read SECTIONS data and create a list-------------------------#
@@ -34,14 +41,24 @@ number_of_hours = int(hours[0])
 
 # --------------------------READ SUBJECTS AND CREATE A LIST---------------------#
 
-subjects = fixedData.readline()
-subjects = subjects.strip()
-subjects = subjects.split(" ")
-for i in range(2):
-    subjects.pop(0)
-#print("\nSubjects: ", subjects, type(subjects))
+# break on equal, the 
 
-number_of_subjects = len(subjects)
+# subjects = fixedData.readline()
+# subjects = subjects.strip()
+# subjects = subjects.split(" ")
+# for i in range(2):
+#     subjects.pop(0)
+# #print("\nSubjects: ", subjects, type(subjects))
+
+# number_of_subjects = len(subjects)
+subjects = []
+for i in range(number_of_subjects):
+    currentSub = subjectFile.readline()
+    currentSub = currentSub.strip()
+    subjects.append(currentSub)
+
+print(subjects)
+
 
 # ------------------------ read the number of subjects per teacher --------------#
 
@@ -56,39 +73,40 @@ number_of_subjects_per_teacher = int(max_subjects[0])
 
 # ----------------------- read and assign the names to a list----------------------#
 
-names = fixedData.readline()
-names = names.strip()
-names = names.split(" ")
-for i in range(2):
-    names.pop(0)
-#print("\nNames: ", names, type(names))
+# names = fixedData.readline()
+# names = names.strip()
+# names = names.split(" ")
+# for i in range(2):
+#     names.pop(0)
+# print("\nNames: ", names, type(names))
 
-names_list = len(names)
-
+# names_list = len(names)
+bP = input("This is just a breakpint")
 # ----------------------- Calulate the minimum number of teachers required--------#
 
-number_of_teachers = ((number_of_sections * number_of_hours) // number_of_subjects_per_teacher) + 1
+# number_of_teachers = ((number_of_sections * number_of_hours) // number_of_subjects_per_teacher) + 1
 
 
 
-teacher_subjects = {}
+# teacher_subjects = {}
 
-subject_pointer = 0
+# subject_pointer = 0
 
-for i in range(number_of_teachers):
+# for i in range(number_of_teachers):
 
-    teacher_subjects[names[i]] = []
-    current_teacher = names[i]
+#     teacher_subjects[names[i]] = []
+#     current_teacher = names[i]
     
-    for j in range(number_of_subjects_per_teacher):
+#     for j in range(number_of_subjects_per_teacher):
     
-        if subject_pointer > 4:
-            subject_pointer = 0
+#         if subject_pointer > 4:
+#             subject_pointer = 0
         
-        teacher_subjects[current_teacher].append(subjects[subject_pointer])
-        subject_pointer += 1
+#         teacher_subjects[current_teacher].append(subjects[subject_pointer])
+#         subject_pointer += 1
     
-    subject_pointer -= 2
-#print("\nTeachers and thier subjects: \n", teacher_subjects)
+#     subject_pointer -= 2
+# #print("\nTeachers and thier subjects: \n", teacher_subjects)
 
 fixedData.close()
+subjectFile.close()

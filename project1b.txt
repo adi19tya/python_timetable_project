@@ -1,0 +1,74 @@
+Project 1:
+Time Table(TT) :
+phase I:
+Given the specification as follows, create and display the time table.
+
+There are 5 sections.
+Each section has 4 hours of class for 5 days in the week.
+There are 5 subjects, each of which is taught for 4 hours.
+You may call the subjects sub1, sub2, sub3, sub4, sub5 or give some names.
+Timings are : 8 am - 9 am, 9 am - 10 am, 11 am - 12 noon, 12 noon - 1 pm.
+There are some n teachers. You may call them as teacher1, teacher2, teacher3, ... or give
+them some names. Minimize the value of n.
+Any teacher can teach any subject.
+A single teacher teaches a given subject for a section.
+No teacher will teach more than three subjects.
+No teacher will teach more than 3 hrs in a day.
+
+construct suitable data structures to hold these information.
+display time table for each section.
+display time table for each teacher.
+
+Phase II:
+Information about teachers is stored in a file.
+It contains for each teacher,
+slno,name,subjects they teach,preference.
+These are comma separated.
+The names have one or more spaces in the middle.
+The subjects are one or more; are separated by :
+There could be subjects which the teacher can teach, but
+are not part of the curriculum.
+The preferences are :
+always 2 hr slots or always 1 hr slot.
+
+List of subjects student study is stored in another file. ------------------------ DONE
+
+Do not hardcode the filename. Take it as input or as command line argument. ------ DONE
+
+Follow the same process. Consider all the inputs given above. -------------------- DONE
+
+
+-------------
+
+think and analyze the problem. (1 hr)
+create a module and put the stubs and give it your next team (30 min)
+analyze and write test cases for your previous team ( 1 hr 30 min)
+develop your program (2 hrs)
+give it for testing to the next team
+you test the program of your previous team (1 hr) and report.
+you correct your bugs and send to the next team for review (1 hr)
+you review the code for your previous team and indicate corrections (30 min)
+your correct your code based on review (30 min)
+
+Develop your code as a module. Use multiple files.
+Your code be object oriented or procedural. It is upto you.
+These timings are indicative - could vary.
+Store all your versions - one given for testing, corrected after testing, sent 
+for review, corrected after review.
+
+------------------------------
+
+guidelines:
+- use meaningful variable names and function names
+- comment what the function does, what a piece of code does
+- do not use tricks
+- write the code simple and easy to read
+
+
+
+
+
+
+
+
+ 
