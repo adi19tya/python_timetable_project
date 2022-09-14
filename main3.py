@@ -40,12 +40,21 @@ class School:
         # for k in range(len(self.sectionList) * len(self.timetable)):
         #     historyDict[k] = []
 
-        subjectPointer = 0
         teacherPointer = 0
 
         # start filling in the timetable
         timeTableKeys = list(self.timetable.keys())
-        for sectionIdex in range(len(self.sectionList)):      
+        for sectionIdex in range(len(self.sectionList)):
+            teacherSubjectCombinations = {}  
+            listOfTeachers =  list(DPS.sectionList[sectionIdex].teacherSubjectCombinatons.keys()) # need to make list of objects
+            for i in range(len(listOfTeachers)):
+                teacherSubjectCombinations[listOfTeachers[i]] = DPS.sectionList[sectionIdex].teacherSubjectCombinatons[listOfTeachers[i]]
+            print("\n\n\nTeacher Objects: ", listOfTeachers)
+            print("\n\n\nTeacher Subject Maps: ", teacherSubjectCombinations)
+            # listOfSubjects = []
+            # for teacher in listOfTeachers:
+            #     listOfSubjects.append(DPS.sectionList[sectionIdex].teacherSubjectCombinatons[teacher])
+            #     pass    
             for slotIndex in range(len(timeTableKeys)):
                 
                 currentSection = self.sectionList[sectionIdex]
@@ -56,37 +65,36 @@ class School:
                 print("Section: ", currentSection.sectionName) # print the section name
 
                 # iterate through teachers
-                # endOfTeachersReachedCount = 0
-                originalTeacherIndex = teacherPointer
+                originalTeacher = listOfTeachers[teacherPointer].teacherName
                 while True:
     
                     assigned = False
                     #iterate through subjects
-                    originalSubjectIndex = subjectPointer
+                    #originalSubject = teacherSubjectCombinations[listOfTeachers[teacherPointer]]
                     while True:
-                        currentTeacher = self.teacherList[teacherPointer]
-                        currentSubject = self.subjectList[subjectPointer]
+                        currentTeacher = listOfTeachers[teacherPointer]
+                        currentSubject = teacherSubjectCombinations[listOfTeachers[teacherPointer]] 
                         print("\nFirst Combo", currentTeacher.teacherName, currentSubject)
 
                         secSubPair = [currentSection.sectionName, currentSubject]
                         #print(secSubPair)
 
-                        condition1 = currentTeacher.check_section_subject(secSubPair)
+                        #condition1 = currentTeacher.check_section_subject(secSubPair)
                         condition2 = currentTeacher.check_daily_hours(currentSlot[0])
                         condition3 = currentTeacher.check_max_subjects(currentSubject)
                         condition4 = currentTeacher.checkTimeSlotOccurance(currentSlot[1], currentSlot[0])
-                        condition5 = currentSection.checkSubjectPerDayForOneSection(currentSlot[0], currentSubject)
+                        #condition5 = currentSection.checkSubjectPerDayForOneSection(currentSlot[0], currentSubject)
                         condition6 = currentSection.checkSubjectCount(currentSubject)
                 
                         print("\n\nCONDITION CHECK: ")
-                        print("check_section_subject: ", condition1)
+                        #print("check_section_subject: ", condition1)
                         print("check_daily_hours: ", condition2)
                         print("check_max_subjects: ", condition3)
                         print("checkTimeSlotOccurance: ", condition4)
-                        print("checkSubjectPerDayForOneSection", condition5)
+                        #print("checkSubjectPerDayForOneSection", condition5)
                         print("checkSubjectCount: ", condition6)
 
-                        if (condition1 and condition2 and condition3 and condition4 and condition6):
+                        if (condition2 and condition3 and condition4 and condition6):
                             # enter the [teacher, subject] pair into the timeslot for the section
                             print("\nCommited Current Combo", currentTeacher.teacherName, currentSubject)
                             self.timetable[currentSlot][currentSection.sectionName] = [currentTeacher.teacherName, currentSubject]
@@ -94,56 +102,40 @@ class School:
                                 print(i, self.timetable[i])
 
                             # add sec sub comb to teach object for condition 1
-                            currentTeacher.addCommittedSecSubToDict(secSubPair)  
-                            currentTeacher.subractHourForCommitedPair(currentSlot[0])    # condition 2
-                            currentTeacher.subMaxSubForCommittedPair(currentSubject)       # condition 3
-                            currentTeacher.addTimeSlotToDay(currentSlot[1], currentSlot[0])     # condition 4
-                            currentSection.addCommittedPairForDaySubCondition(currentSlot[0], currentSubject)     # condition 5
-                            currentSection.addHourToSubject(currentSubject)  # condition 6
+                            #currentTeacher.addCommittedSecSubToDict(secSubPair)
+                            currentTeacher.subractHourForCommitedPair(currentSlot[0])                             # condition 2
+                            currentTeacher.subMaxSubForCommittedPair(currentSubject)                              # condition 3
+                            currentTeacher.addTimeSlotToDay(currentSlot[1], currentSlot[0])                       # condition 4
+                            #currentSection.addCommittedPairForDaySubCondition(currentSlot[0], currentSubject)    # condition 5
+                            currentSection.addHourToSubject(currentSubject)                                       # condition 6
                             assigned = True
-
-                            # Go to next subject. If it is the last subject, go to the first subject
-                            if subjectPointer == len(self.subjectList) - 1:
-                                subjectPointer = 0
-                            else:
-                                subjectPointer += 1
-
-                            if teacherPointer >= len(self.teacherList) - 1:
-                                teacherPointer = 0
-                            else:
-                                teacherPointer += 1
+                            
+                            #teacherPointer += 1
 
                             break
-                        else:
 
-                            if (currentSlot[0] == "FRIDAY" and currentTeacher.teacherName == "t4" and currentSubject == "S3"):
-                                print("subjectHourCount: ", currentSection.subjectHourCount)
-                            if condition2 == False or condition3 == False or condition4 == False:
-                                # when these conditions fail, going to the next subject does not help
-                                break
+                        # if teacherPointer == len(listOfTeachers) - 1:
+                        #     break
+                        
+                        # teacherPointer += 1
 
-                            # Go to next subject. If it is the last subject, go to the first subject
-                            if subjectPointer == len(self.subjectList) - 1:
-                                subjectPointer = 0
-                            else:
-                                subjectPointer += 1
-                            if (originalSubjectIndex == subjectPointer):
-                                break
-
-                    if (assigned == True):
-                        break
+                    # if (assigned == True):
+                    #     break
 
                     # Go to the next teacher. If it is the last teacher, go to the first teacher
-                    if teacherPointer >= len(self.teacherList) - 1:
+                    if teacherPointer >= len(listOfTeachers) - 1:
                         teacherPointer = 0
                     else:
                         teacherPointer += 1
 
-                    if originalTeacherIndex == teacherPointer:
+                    if (assigned == True):
+                        break
+
+                    if originalTeacher == teacherPointer:
                         print("ALL POSSIBLE COMBINATIONS CHECKED")
                         for i in self.timetable:
                             print(i, self.timetable[i])
-                        #print("\n\n", self.timetable)
+                        # print("\n\n", self.timetable)
                         # print("\nPointer History: \n", self.pointerHistory)
                         quit()
 
@@ -247,26 +239,26 @@ class Teacher:
 
     # Check the conditions
 
-    # Condition 1: A single teacher teaches one subject for a section
-    def check_section_subject(self, secSub_comination):
-        print("list of sections and respective subjects taught: ", self.section_subject_list)
-        #print("Teacher Name: ", self.teacherName)
-        #print("Section Subject List:", self.section_subject_list)
-        print("Incoming Sec Subject: ", secSub_comination)
-        # check if the section subject combination is already being taught
-        if secSub_comination[0] in self.section_subject_list:   # checking if section is being taught
-            # if different subject is taught for the same section by same teacher, return invalid combination
-            if self.section_subject_list[secSub_comination[0]] != secSub_comination[1]:
-                return False
-            else:
-                return True
+    # # Condition 1: One teacher, One Section, One Subject
+    # def check_section_subject(self, secSub_comination):
+    #     print("list of sections and respective subjects taught: ", self.section_subject_list)
+    #     #print("Teacher Name: ", self.teacherName)
+    #     #print("Section Subject List:", self.section_subject_list)
+    #     print("Incoming Sec Subject: ", secSub_comination)
+    #     # check if the section subject combination is already being taught
+    #     if secSub_comination[0] in self.section_subject_list:   # checking if section is being taught
+    #         # if different subject is taught for the same section by same teacher, return invalid combination
+    #         if self.section_subject_list[secSub_comination[0]] != secSub_comination[1]:
+    #             return False
+    #         else:
+    #             return True
 
-        # if the section subject combination is not present add to the dictionary.
-        else:
-            return True
+    #     # if the section subject combination is not present add to the dictionary.
+    #     else:
+    #         return True
 
-    def addCommittedSecSubToDict(self, secSubComb):
-        self.section_subject_list[secSubComb[0]] = secSubComb[1]
+    # def addCommittedSecSubToDict(self, secSubComb):
+    #     self.section_subject_list[secSubComb[0]] = secSubComb[1]
     
 
 
@@ -322,6 +314,7 @@ class Section:
 
     def __init__(self, sectionName):
         self.sectionName = sectionName
+        self.teacherSubjectCombinatons = {}
         self.daySubjectDict = {"MONDAY":[], "TUESDAY":[], "WEDNESDAY":[], "THURSDAY":[], "FRIDAY":[]}
         self.subjectHourCount = {"S1" : 0, "S2" : 0, "S3" : 0, "S4" : 0, "S5" : 0}
 
@@ -396,7 +389,7 @@ for i in range(numberOfTeachers):
     teacherInstance = Teacher(teacherName)
     DPS.addTeacher(teacherInstance)'''
 
-teachers = ["t1", "t2", "t3", "t4", "t5", "t6", "t7", "t8", "t9", "t10"]
+teachers = ["t1", "t2", "t3", "t4", "t5", "t6", "t7", "t8", "t9"]
 for i in teachers:
     teacherInstance = Teacher(i)
     DPS.addTeacher(teacherInstance)
@@ -407,6 +400,19 @@ for i in teachers:
 subjects = Derived_Data.subjects
 for i in subjects:
     DPS.addSubject(i)
+
+# Create viable section:teacher:subject combinations
+k = 0
+for i in range(len(sections)):
+    for j in range(len(subjects)):
+        DPS.sectionList[i].teacherSubjectCombinatons[DPS.teacherList[k]] = DPS.subjectList[j]
+        k = (k + 1) % len(teachers)
+
+# print the teacher:section:subject combination
+for i in range(len(sections)):
+    print("Teacher:Section:Subject Combination:  ", DPS.sectionList[i].sectionName, DPS.sectionList[i].teacherSubjectCombinatons)
+    
+
 
 DPS.initializeTimeTable()
 DPS.generateTimetable()
